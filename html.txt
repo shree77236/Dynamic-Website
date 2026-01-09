@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Website</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        text-align: center;
+    }
+
+    header {
+        background: #222;
+        color: white;
+        padding: 20px;
+    }
+
+    .carousel {
+        margin: 20px auto;
+        max-width: 600px;
+    }
+
+    .carousel img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .dynamic {
+        background: white;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    footer {
+        background: #222;
+        color: white;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Shrinivas Ganesh Gadiwan</h1>
+    <p>PRN: 1012412013</p>
+</header>
+
+<div class="carousel">
+    <img id="carouselImage" src="https://picsum.photos/600/350?random=1">
+</div>
+
+<div class="dynamic">
+    <p id="greeting"></p>
+    <p>Current Time: <span id="time"></span></p>
+</div>
+
+<footer>
+    <p>© 2026 Dynamic Website</p>
+</footer>
+
+<script>
+    // Carousel Images (5 photos)
+    let images = [
+        "https://picsum.photos/600/350?random=1",
+        "https://picsum.photos/600/350?random=2",
+        "https://picsum.photos/600/350?random=3",
+        "https://picsum.photos/600/350?random=4",
+        "https://picsum.photos/600/350?random=5"
+    ];
+
+    let index = 0;
+    let img = document.getElementById("carouselImage");
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        img.src = images[index];
+    }, 2000);
+
+    // Dynamic Time
+    function updateTime() {
+        let now = new Date();
+        document.getElementById("time").innerText = now.toLocaleTimeString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Greeting based on time
+    let hour = new Date().getHours();
+    let greeting = "Hello";
+
+    if (hour < 12) greeting = "Good Morning 🌅";
+    else if (hour < 18) greeting = "Good Afternoon ☀️";
+    else greeting = "Good Evening 🌙";
+
+    document.getElementById("greeting").innerText = greeting;
+</script>
+
+</body>
+</html>
